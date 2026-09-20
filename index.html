@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anshuman Tiwari — AI Application Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F1E7;
+    --bg-panel: #ECE4D2;
+    --ink: #1D1B15;
+    --ink-soft: #5B5648;
+    --ink-faint: #8B8574;
+    --accent: #2E6B5E;
+    --accent-soft: #E4E9DE;
+    --gold: #B87F2A;
+    --line: #D6CBAE;
+    --card-bg: #FBF9F3;
+
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #14181A;
+      --bg-panel: #1B2123;
+      --ink: #ECE6D6;
+      --ink-soft: #AFA894;
+      --ink-faint: #726C5C;
+      --accent: #5FBBA5;
+      --accent-soft: #202B27;
+      --gold: #D9A24E;
+      --line: #2B3130;
+      --card-bg: #191F20;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #14181A;
+    --bg-panel: #1B2123;
+    --ink: #ECE6D6;
+    --ink-soft: #AFA894;
+    --ink-faint: #726C5C;
+    --accent: #5FBBA5;
+    --accent-soft: #202B27;
+    --gold: #D9A24E;
+    --line: #2B3130;
+    --card-bg: #191F20;
+  }
+
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; }
+
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- nav ---------- */
+  header.site {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .nav-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 22px; align-items: center; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .theme-toggle {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink-soft);
+    border-radius: 999px;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .theme-toggle:focus-visible, a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 620px) {
+    .nav-links a:not(.theme-toggle-wrap) { display: none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: 84px 0 64px;
+  }
+  .hero-kicker {
+    font-size: 15px;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 18px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(34px, 5.4vw, 56px);
+    line-height: 1.12;
+    margin: 0 0 22px;
+    max-width: 15ch;
+    letter-spacing: -0.01em;
+  }
+  .hero-lede {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0 0 34px;
+  }
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 38px;
+  }
+  .chip {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .btn-primary { background: var(--ink); color: var(--bg); }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---------- section scaffolding ---------- */
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  .section-head { margin-bottom: 36px; max-width: 60ch; }
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(24px, 3vw, 30px);
+    margin: 0 0 10px;
+  }
+  .section-head p { color: var(--ink-soft); margin: 0; }
+
+  /* ---------- about ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+  }
+  .about-grid p { margin: 0 0 16px; color: var(--ink-soft); }
+  .about-grid strong { color: var(--ink); }
+  .fact-list { list-style: none; margin: 0; padding: 0; }
+  .fact-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14.5px;
+  }
+  .fact-list li:first-child { padding-top: 0; }
+  .fact-list dt { color: var(--ink-faint); }
+  .fact-list dd { margin: 0; text-align: right; font-weight: 500; }
+
+  @media (max-width: 720px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- experience ---------- */
+  .role-block {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 28px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .role-block:last-child { border-bottom: none; }
+  .role-meta { color: var(--ink-faint); font-size: 14px; }
+  .role-meta .role-title { color: var(--ink); font-weight: 600; font-size: 15.5px; display: block; margin-bottom: 4px; }
+  .role-body p { margin: 0 0 12px; color: var(--ink-soft); }
+  .role-body ul { margin: 0; padding-left: 18px; color: var(--ink-soft); }
+  .role-body li { margin-bottom: 6px; }
+
+  @media (max-width: 620px) {
+    .role-block { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ---------- projects ---------- */
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 30px;
+    margin-bottom: 22px;
+  }
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .project-top h3 {
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .project-tag {
+    font-size: 12.5px;
+    color: var(--gold);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .project-desc { color: var(--ink-soft); margin: 0 0 18px; max-width: 68ch; }
+  .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .stack-tag {
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 3px 9px;
+  }
+
+  /* pipeline diagram (Hybrid RAG) */
+  .pipeline { display: block; margin-top: 4px; }
+  .pipeline text { font-family: var(--font-body); }
+
+  /* ---------- more work grid ---------- */
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .more-item {
+    background: var(--card-bg);
+    padding: 22px 24px;
+  }
+  .more-item h4 {
+    font-size: 15.5px;
+    margin: 0 0 6px;
+    font-weight: 600;
+  }
+  .more-item p { margin: 0; color: var(--ink-soft); font-size: 14.5px; }
+
+  @media (max-width: 620px) {
+    .more-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- skills ---------- */
+  .skill-groups {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .skill-group h4 {
+    font-size: 13.5px;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin: 0 0 12px;
+  }
+  .skill-group ul { list-style: none; margin: 0; padding: 0; }
+  .skill-group li {
+    font-size: 15px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-group li:last-child { border-bottom: none; }
+
+  @media (max-width: 860px) {
+    .skill-groups { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .skill-groups { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- contact ---------- */
+  .contact-wrap {
+    background: var(--bg-panel);
+    border-radius: 18px;
+    padding: 48px 40px;
+    text-align: left;
+  }
+  .contact-wrap h2 {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 4vw, 34px);
+    margin: 0 0 14px;
+    max-width: 20ch;
+  }
+  .contact-wrap p { color: var(--ink-soft); margin: 0 0 26px; max-width: 50ch; }
+  .contact-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  footer {
+    padding: 32px 0 48px;
+    color: var(--ink-faint);
+    font-size: 13.5px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <div class="nav-name">Anshuman Tiwari</div>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <p class="hero-kicker">AI Application Engineer · Backend Python Developer</p>
+    <h1>I connect language models to real data — and ship the backend underneath them.</h1>
+    <p class="hero-lede">Based in Ahmedabad, India. About two years building RAG pipelines, multi-agent systems, and the FastAPI backends that keep them running in production — most recently at MobileFirst Applications.</p>
+    <div class="chip-row">
+      <span class="chip">Python</span>
+      <span class="chip">FastAPI</span>
+      <span class="chip">LangChain / LangGraph</span>
+      <span class="chip">RAG pipelines</span>
+      <span class="chip">Multi-agent systems</span>
+      <span class="chip">PostgreSQL · Redis</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#work">View work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+</main>
+
+<div class="wrap">
+
+  <section id="about">
+    <div class="section-head">
+      <h2>About</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I came into tech from a non-technical background — hospital administration and family business sales — and built my way in through self-directed learning and a training program at Tops Technologies. That path shapes how I work now: I care more about whether something actually runs correctly than about how impressive it sounds on paper.</p>
+        <p>Most of my work sits at the point where <strong>large language models meet real backend systems</strong> — retrieval pipelines that need to be accurate, agent workflows that need to be reliable, and the FastAPI services and databases that hold it all together in production.</p>
+        <p>I lean heavily on AI coding tools like Cursor to move fast, and I've spent a good chunk of this year building out a deeper interview-ready project portfolio: hybrid retrieval, human-in-the-loop agents, and end-to-end deployed apps.</p>
+      </div>
+      <dl class="fact-list">
+        <li><dt>Based in</dt><dd>Ahmedabad, India</dd></li>
+        <li><dt>Experience</dt><dd>~2 years</dd></li>
+        <li><dt>Most recent role</dt><dd>MobileFirst Applications</dd></li>
+        <li><dt>Core stack</dt><dd>Python, FastAPI, LangChain</dd></li>
+        <li><dt>Focus</dt><dd>RAG &amp; agentic systems</dd></li>
+        <li><dt>Background</dt><dd>Career switcher</dd></li>
+        <li><dt>Availability</dt><dd>Immediate</dd></li>
+      </dl>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head">
+      <h2>Experience</h2>
+    </div>
+    <div class="role-block">
+      <div class="role-meta">
+        <span class="role-title">MobileFirst Applications</span>
+        Apr 2024 – Mar 2026<br>Full Stack Developer (Backend + AI Focus)
+      </div>
+      <div class="role-body">
+        <p>Built and maintained production backend APIs for a live fintech application, alongside in-house AI products and client-facing AI systems.</p>
+        <ul>
+          <li>Built and maintained production FastAPI backend APIs for a live fintech application serving real users.</li>
+          <li>Designed an automated notification system handling 5+ scheduled triggers — card inactivity alerts, subscription expiry warnings, and payment reminders.</li>
+          <li>Implemented account security features, including account lock functionality and username validation fixes.</li>
+          <li>Delivered payment and redemption feature enhancements directly in a live production environment.</li>
+          <li>Shipped in-house AI products including an ASO AI Agent, ResearchBot, a Form-16 Extractor, and an Aadhaar/PAN fraud-detection app.</li>
+          <li>Delivered AI client projects: a face-recognition pipeline for Sporta Japan, an NL-to-SQL chatbot for Khaitan, and legal-document automation for UFResource.</li>
+          <li>Collaborated with frontend and QA teams using Git-based version control and API documentation practices.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role-block">
+      <div class="role-meta">
+        <span class="role-title">Customer Care Associate</span>
+        Oct 2021 – Mar 2024<br>Zydus Hospital, Ahmedabad
+      </div>
+      <div class="role-body">
+        <p>Frontline patient and customer-facing role, run in parallel with the start of the Tops Technologies program and self-directed study that led into AI engineering.</p>
+      </div>
+    </div>
+    <div class="role-block">
+      <div class="role-meta">
+        <span class="role-title">Senior Executive</span>
+        May 2019 – Jul 2021<br>Shalby Hospital, Ahmedabad
+      </div>
+      <div class="role-body">
+        <p>Hospital administration role, prior to the customer care position at Zydus.</p>
+      </div>
+    </div>
+    <div class="role-block">
+      <div class="role-meta">
+        <span class="role-title">Family business &amp; sales</span>
+        2011 – 2019
+      </div>
+      <div class="role-body">
+        <p>Supported family agricultural business operations while working in local sales and trading roles, alongside government competitive-exam preparation.</p>
+      </div>
+    </div>
+    <div class="role-block">
+      <div class="role-meta">
+        <span class="role-title">Tops Technologies</span>
+        2023 – 2024<br>Ahmedabad
+      </div>
+      <div class="role-body">
+        <p>Python, Generative AI &amp; Data Analytics Program — a 7-month intensive that formed the foundation for the move into AI engineering. B.Com, Deen Dayal Upadhyay Gorakhpur University (2011).</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <p>A mix of personal projects built to go deep on retrieval and agents, and production client work from MobileFirst.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3>Hybrid RAG</h3>
+        <span class="project-tag">Personal project</span>
+      </div>
+      <p class="project-desc">A retrieval-augmented generation system built to be evaluated, not just demoed — every answer is scored for faithfulness and relevancy before it's returned, and the retrieval step fuses two different search strategies instead of relying on vectors alone.</p>
+      <svg class="pipeline" viewBox="0 0 860 108" role="img" aria-label="Pipeline: chunk and filter, then vector and keyword retrieval fused by reciprocal rank fusion, then rerank, then generate, then LLM-judge evaluation">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-faint)"></path>
+          </marker>
+        </defs>
+        <g fill="none" stroke="var(--ink-faint)" stroke-width="1.4">
+          <line x1="112" y1="30" x2="150" y2="30" marker-end="url(#arrow)"></line>
+          <line x1="112" y1="56" x2="150" y2="30" marker-end="url(#arrow)"></line>
+          <line x1="270" y1="30" x2="308" y2="54" marker-end="url(#arrow)"></line>
+          <line x1="270" y1="78" x2="308" y2="54" marker-end="url(#arrow)"></line>
+          <line x1="428" y1="54" x2="466" y2="54" marker-end="url(#arrow)"></line>
+          <line x1="586" y1="54" x2="624" y2="54" marker-end="url(#arrow)"></line>
+          <line x1="744" y1="54" x2="782" y2="54" marker-end="url(#arrow)"></line>
+        </g>
+        <g font-size="12.5" fill="var(--ink)">
+          <rect x="4" y="14" width="108" height="32" rx="7" fill="none" stroke="var(--line)"></rect>
+          <text x="58" y="34" text-anchor="middle">Chunk + filter</text>
+
+          <rect x="150" y="14" width="120" height="32" rx="7" fill="var(--accent-soft)" stroke="var(--line)"></rect>
+          <text x="210" y="34" text-anchor="middle">Vector (Chroma)</text>
+          <rect x="150" y="62" width="120" height="32" rx="7" fill="var(--accent-soft)" stroke="var(--line)"></rect>
+          <text x="210" y="82" text-anchor="middle">BM25 keyword</text>
+
+          <rect x="308" y="38" width="120" height="32" rx="7" fill="none" stroke="var(--line)"></rect>
+          <text x="368" y="58" text-anchor="middle">RRF fusion</text>
+
+          <rect x="466" y="38" width="120" height="32" rx="7" fill="none" stroke="var(--line)"></rect>
+          <text x="526" y="58" text-anchor="middle">Cross-rerank</text>
+
+          <rect x="624" y="38" width="120" height="32" rx="7" fill="none" stroke="var(--line)"></rect>
+          <text x="684" y="58" text-anchor="middle">Generate</text>
+
+          <rect x="782" y="38" width="74" height="32" rx="7" fill="var(--accent-soft)" stroke="var(--line)"></rect>
+          <text x="819" y="58" text-anchor="middle">Judge</text>
+        </g>
+      </svg>
+      <div class="stack-row">
+        <span class="stack-tag">ChromaDB</span>
+        <span class="stack-tag">BM25</span>
+        <span class="stack-tag">Reciprocal Rank Fusion</span>
+        <span class="stack-tag">Cross-encoder reranking</span>
+        <span class="stack-tag">Groq + Gemini</span>
+        <span class="stack-tag">fastembed</span>
+        <span class="stack-tag">React</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3>LangGraph Research Agent</h3>
+        <span class="project-tag">Personal project</span>
+      </div>
+      <p class="project-desc">A multi-step research agent with a human-in-the-loop review point, so the agent pauses for a check before continuing rather than running fully autonomous. Runs on Groq as the primary model with a Gemini fallback, since no paid OpenAI key was available — a real constraint, worked around rather than hidden.</p>
+      <div class="stack-row">
+        <span class="stack-tag">LangGraph</span>
+        <span class="stack-tag">Groq</span>
+        <span class="stack-tag">Gemini fallback</span>
+        <span class="stack-tag">FastAPI</span>
+        <span class="stack-tag">React</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3>Sporta Japan — player face recognition</h3>
+        <span class="project-tag">Client project · MobileFirst</span>
+      </div>
+      <p class="project-desc">Built a face recognition API for a Japanese basketball client that identifies players in images and video and draws bounding boxes on their faces. Indexed 1,000+ client images across 15 players into AWS S3. YOLOv8 underperformed at around 50% accuracy, so the pipeline switched to Amazon Rekognition, reaching 95%+. Adaptive frame extraction (16–32 FPS) balanced API cost against accuracy for video.</p>
+      <div class="stack-row">
+        <span class="stack-tag">Amazon Rekognition</span>
+        <span class="stack-tag">YOLOv8</span>
+        <span class="stack-tag">OpenCV</span>
+        <span class="stack-tag">AWS S3</span>
+        <span class="stack-tag">FastAPI</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3>XPayback — mobile app backend</h3>
+        <span class="project-tag">Client project · MobileFirst · Production</span>
+      </div>
+      <p class="project-desc">A production fintech backend handling cashback redemption and account lock features for real users — built for the reliability that money-moving systems need, with Redis caching and a Dockerized deployment.</p>
+      <div class="stack-row">
+        <span class="stack-tag">FastAPI</span>
+        <span class="stack-tag">PostgreSQL</span>
+        <span class="stack-tag">Redis</span>
+        <span class="stack-tag">Docker</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3>Event CRM</h3>
+        <span class="project-tag">Personal project · Full-stack</span>
+      </div>
+      <p class="project-desc">A full-stack event management CRM built over a structured multi-day build: role-based auth, round-robin volunteer assignment, seat booking with row-level locking to prevent double-booking, and an eight-page multi-role admin frontend.</p>
+      <div class="stack-row">
+        <span class="stack-tag">FastAPI</span>
+        <span class="stack-tag">SQLAlchemy</span>
+        <span class="stack-tag">PostgreSQL</span>
+        <span class="stack-tag">React + Vite</span>
+        <span class="stack-tag">Tailwind CSS</span>
+        <span class="stack-tag">JWT / RBAC</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3>Khaitan — NL-to-SQL chatbot</h3>
+        <span class="project-tag">Client project · MobileFirst</span>
+      </div>
+      <p class="project-desc">A natural-language-to-SQL system that lets non-technical staff query company databases directly, without writing SQL. Kept safe with read-only database access and schema-aware prompting, so the model can't act outside the bounds of what it's shown.</p>
+      <div class="stack-row">
+        <span class="stack-tag">LangChain</span>
+        <span class="stack-tag">OpenAI</span>
+        <span class="stack-tag">SQL</span>
+        <span class="stack-tag">Schema-aware prompting</span>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:8px;">
+      <h2 style="font-size:20px;">More work</h2>
+    </div>
+    <div class="more-grid">
+      <div class="more-item">
+        <h4>Medical Knowledge Chatbot (RAG)</h4>
+        <p>Full RAG pipeline — ingestion, semantic chunking, embeddings, vector storage — grounded strictly in a source textbook. Same retrieval logic validated across GPT-4 and Gemini with no changes needed.</p>
+      </div>
+      <div class="more-item">
+        <h4>HR Policy RAG Chatbot</h4>
+        <p>Retrieval chatbot for answering HR policy questions grounded in company documents.</p>
+      </div>
+      <div class="more-item">
+        <h4>RandomForest sales prediction</h4>
+        <p>A sales prediction model built with scikit-learn's RandomForest, including feature engineering work.</p>
+      </div>
+      <div class="more-item">
+        <h4>UFResource — legal document automation</h4>
+        <p>Docassemble-based system that auto-maps template placeholders to interview questions, with manual or JSON-prefilled intake and S3-backed document delivery.</p>
+      </div>
+      <div class="more-item">
+        <h4>Handwritten Prescription Extractor</h4>
+        <p>An OCR-driven extraction API for handwritten prescriptions, published publicly on RapidAPI.</p>
+      </div>
+      <div class="more-item">
+        <h4>Form-16 Tax Analysis Tool</h4>
+        <p>Parses Form-16 tax documents into structured, analyzable data.</p>
+      </div>
+      <div class="more-item">
+        <h4>ResearchBot</h4>
+        <p>A classification pipeline for sorting and tagging social media content at scale.</p>
+      </div>
+      <div class="more-item">
+        <h4>Aadhaar / PAN fraud detection</h4>
+        <p>In-house tool for flagging fraudulent Aadhaar and PAN identity documents.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <h2>Skills</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4>AI / retrieval</h4>
+        <ul>
+          <li>LangChain / LangGraph</li>
+          <li>RAG pipelines</li>
+          <li>Hybrid &amp; vector retrieval</li>
+          <li>OpenAI / Gemini / Claude / Groq</li>
+          <li>HuggingFace</li>
+          <li>scikit-learn</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Backend &amp; data</h4>
+        <ul>
+          <li>Python</li>
+          <li>FastAPI / Flask</li>
+          <li>PostgreSQL / Redis</li>
+          <li>ChromaDB</li>
+          <li>Docker / AWS S3</li>
+          <li>Pandas</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Computer vision</h4>
+        <ul>
+          <li>Amazon Rekognition</li>
+          <li>YOLOv8</li>
+          <li>OpenCV</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Frontend — building depth</h4>
+        <ul>
+          <li>React</li>
+          <li>Tailwind CSS</li>
+          <li>Vite</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:26px; color:var(--ink-soft); font-size:15px; max-width:60ch;">Backend and AI systems are where I'm strongest. On the frontend I'm still building depth — comfortable putting together basic React + Tailwind interfaces on top of my own APIs, as in Event CRM and the Hybrid RAG demo, but it's not yet where my core expertise is.</p>
+    <p style="margin-top:18px; color:var(--ink-faint); font-size:13.5px;">Certifications: Foundational Generative AI · Machine Learning and AI A to Z · Complete Backend Roadmap (Python) · Complete Web Development Bootcamp · Certified Data Analytics · Legal Document Automation with Docassemble · LangGraph Fundamentals</p>
+  </section>
+
+  <section id="contact" style="border-top:none;">
+    <div class="contact-wrap">
+      <h2>Building something that needs retrieval, agents, or a backend that holds up?</h2>
+      <p>Open to AI/ML engineering roles, backend Python work, and remote opportunities.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:anshuman7p@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="https://github.com/Anshuman7p" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/anshuman-tiwari-05b117157/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Anshuman Tiwari — Ahmedabad, India</span>
+    <span>AI Application Engineer · Backend Python Developer</span>
+  </footer>
+
+</div>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  toggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    if (current === 'dark') { root.setAttribute('data-theme', 'light'); }
+    else if (current === 'light') { root.removeAttribute('data-theme'); }
+    else { root.setAttribute('data-theme', 'dark'); }
+  });
+</script>
+
+</body>
+</html>
